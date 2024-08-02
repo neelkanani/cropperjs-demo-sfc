@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react'
 
 import { FabricJSCanvas, useFabricJSEditor } from 'fabricjs-react'
 import "./FabricCanvasComponent.css"
-import { Canvas, Rect } from 'fabric'
+import { Canvas, Rect, Textbox } from 'fabric'
 
 const FabricCanvasComponent = () => {
   const canvasRef = useRef(null);
@@ -12,6 +12,8 @@ const FabricCanvasComponent = () => {
     if (canvasRef.current && !fabricCanvasRef.current) {
       // Initialize fabric canvas only if it's not already initialized
       fabricCanvasRef.current = new Canvas(canvasRef.current);
+
+
 
       // Example: Add a rectangle
       const rect = new Rect({
@@ -23,6 +25,17 @@ const FabricCanvasComponent = () => {
         zIndex: 1
       });
       fabricCanvasRef.current.add(rect);
+      
+      const text = new Textbox("Hi there", {
+        left: 150,
+        top: 150,
+        fontSize: 16,
+        fill: 'black',
+        backgroundColor: 'grey',
+        originX: 'left',
+        originY: 'top'
+      })
+      fabricCanvasRef.current.add(text)
     }
   }, []);
 
